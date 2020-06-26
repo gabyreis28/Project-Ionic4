@@ -1,0 +1,100 @@
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-title>login</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+  <h1 class="ion-text-center">
+    <ion-icon name="checkmark-done" color="primary" class="icon-7em"></ion-icon>
+  </h1>
+
+  <!-- (submit)="onSubmit()": será executado quando o evento de click no botao acontecer -->
+  <form [formGroup]="authForm" (submit)="onSubmit()">
+
+    <!-- exibir ou renderizar o campo nome no formulario
+         *ngIf="!configs.isSignIn": se não estiver em login.Mostrar o campo name -->
+    <ng-container *ngIf="!configs.isSignIn">
+
+      <ion-item>
+        <ion-icon name="person-outline" color="primary" slot="start"></ion-icon>
+        <ion-input type="text" placeholder="name" formControlName="name"></ion-input>
+
+        <!-- exibir messagem de Required no final 
+                   *ngIf="password.dirty && name.hasError('required')": Condição.Para exibir quando o campo name tiver preenchido algo e se o campo name tiver um erro de requires
+                  -->
+        <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('required')">Required</ion-note>
+
+        <!-- Exibir menssagem no final.Validar erro de caracters em name  -->
+        <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">Min. 3 caracters
+        </ion-note>
+      </ion-item>
+
+    </ng-container>
+
+    <ion-item>
+      <!-- slot="start": indicando a posição do item icon no inicio da linha  -->
+      <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+      <ion-input type="email" placeholder="Email" formControlName="email" inputmode="email" autofocus="true">
+      </ion-input>
+
+      <!-- exibir messagem de Required no final 
+       *ngIf="email.dirty && email.hasError('required')": Condição.Para exibir quando o campo email tiver preenchido algo e se o campo email tiver um erro de requires
+      -->
+      <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">Required</ion-note>
+
+      <!-- Exibir menssagem de email no final.Validar erro de email -->
+      <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">Invalid email</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="lock-closed-sharp" color="primary" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+
+      <!-- exibir messagem de Required no final 
+             *ngIf="password.dirty && password.hasError('required')": Condição.Para exibir quando o campo password tiver preenchido algo e se o campo password tiver um erro de requires
+            -->
+      <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">Required</ion-note>
+
+      <!-- Exibir menssagem de password no final.Validar erro de caracters em  password  -->
+      <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('minlength')">Min. 6 caracters
+      </ion-note>
+    </ion-item>
+
+    <!-- [disabled]:Botao fica desabilitado enquanto preencher os campos válidos
+    {{configs.action}}:chama o metodo para seta o nome atual da ação dinamicamente -->
+    <ion-button expand="block" type="submit" [disabled]="authForm.invalid">{{configs.action}}</ion-button>
+  </form>
+
+  <!-- {{ configs.actionChange}}: responsavel por executar as alternancias necessárias e exibir de forma dinamica 
+  (click)="changeAuthAction()": quando clicar no botao execurtar o metodo changeAuthAction  -->
+  <ion-button expand="block" fill="clear" (click)="changeAuthAction()">{{ configs.actionChange}}</ion-button>
+  <ion-button expand="block">
+    <ion-icon name="logo-facebook" slot="start"></ion-icon>Login with Facebook
+  </ion-button>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+´
